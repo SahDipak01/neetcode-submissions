@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+        bool row[9][9]={};
+        bool col[9][9]={};
+        bool box[9][9]={};
+        int n=board.size();
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(board[i][j]=='.'){
+                    continue;
+                }
+                int num=board[i][j]-'1';
+                int boardindex=(i/3)*3+(j/3);
+                if(row[i][num]||col[j][num]||box[boardindex][num]){
+                    return false;
+                }
+                row[i][num]=true;
+                col[j][num]=true;
+                box[boardindex][num]=true;
+            }
+        }
+        return true;
+        
+    }
+};
